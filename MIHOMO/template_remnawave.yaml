@@ -428,6 +428,13 @@ rules:
   - RULE-SET,telegram,PROXY
   - RULE-SET,github,PROXY
 
+  # --- Ubisoft ---
+  - PROCESS-NAME,upc.exe,PROXY
+  - PROCESS-NAME,UbisoftConnect.exe,PROXY
+ 
+  # Rainbow Six Siege
+  - PROCESS-NAME,RainbowSix.exe,PROXY
+
   # --- Игровые платформы и сервисы → 🎮 Игры (по умолчанию DIRECT, можно переключить) ---
   - RULE-SET,epicgames,🎮 Игры
   - RULE-SET,origin,🎮 Игры
