@@ -1,0 +1,60 @@
+# Синхронизация форка с hydraponique/roscomvpn-routing через merge.
+# Ваши коммиты на main сохраняются. При конфликте с upstream job упадёт —
+# разрешите конфликт локально (git fetch upstream && git merge upstream/main) и запушьте.
+
+name: Sync from upstream
+
+on:
+  schedule:
+    # Ежедневно в 06:00 UTC (~09:00 МСК)
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: sync-upstream
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Merge upstream/main into main
+        shell: bash
+        env:
+          UPSTREAM: https://github.com/hydraponique/roscomvpn-routing.git
+        run: |
+          set -euo pipefail
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+
+          git remote add upstream "$UPSTREAM"
+          git fetch origin
+          git fetch upstream --prune
+
+          # Актуальный main форка — все ваши уже запушенные коммиты остаются базой
+          git reset --hard origin/main
+
+          OLD_HEAD=$(git rev-parse HEAD)
+
+          if ! git merge upstream/main -m "Merge upstream hydraponique/roscomvpn-routing ($(date -u +%Y-%m-%d))"; then
+            echo "::error::Merge conflict with upstream. Resolve locally: git fetch upstream && git merge upstream/main"
+            exit 1
+          fi
+
+          NEW_HEAD=$(git rev-parse HEAD)
+
+          if [ "$OLD_HEAD" = "$NEW_HEAD" ]; then
+            echo "Already up to date with upstream, nothing to push."
+            exit 0
+          fi
+
+          git push origin main
