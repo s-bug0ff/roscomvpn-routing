@@ -163,6 +163,7 @@ proxy-groups:
       - 🔓 Без VPN
       - 🛡️ VPN
   - name: 🤖 ИИ
+    icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png
     type: select
     remnawave:
       include-proxies: false
