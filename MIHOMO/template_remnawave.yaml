@@ -15,6 +15,7 @@
 #   📺 Youtube   — отдельный выбор узла для YouTube
 #   💬 Discord   — отдельный выбор узла для Discord / Vesktop
 #   🎮 Игры      — игровые сервисы (Steam, Epic, Origin, Riot, EfT, FaceIT…)
+#   🤖 ИИ        — сервисы искусственного интеллекта (OpenAI, Claude, Gemini, Copilot…)
 #   🔓 Без VPN   — принудительный прямой доступ (DIRECT)
 #   ⛔ Блок      — блокировка (REJECT)
 #   ⏭️ Пропуск   — PASS (передать следующему правилу)
@@ -27,6 +28,7 @@
 #   • Twitch, Pinterest                     → DIRECT
 #   • YouTube, Telegram, GitHub             → PROXY
 #   • Игровые сервисы                       → 🎮 Игры
+#   • AI-сервисы                            → 🤖 ИИ (локальный список в этом файле)
 #   • Остальное                             → PROXY
 #
 # UDP-порт 443/853 (QUIC/DoQ) блокируется глобально.
@@ -160,6 +162,14 @@ proxy-groups:
     proxies:
       - 🔓 Без VPN
       - 🛡️ VPN
+  - name: 🤖 ИИ
+    type: select
+    remnawave:
+      include-proxies: false
+    include-all: true
+    proxies:
+      - 🛡️ VPN
+      - 🔓 Без VPN
   - name: ⚡️ Авто
     type: url-test
     tolerance: 150
@@ -399,6 +409,14 @@ rule-providers:
     path: ./ruleset/games.yaml
     proxy: ⚡️ Авто
     interval: 86400
+  ai:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/s-bug0ff/roscomvpn-routing/refs/heads/main/MIHOMO/ai.yaml
+    path: ./ruleset/ai.yaml
+    proxy: ⚡️ Авто
+    interval: 86400
   ru-apps:
     type: http
     behavior: classical
@@ -434,6 +452,9 @@ rules:
  
   # Rainbow Six Siege
   - PROCESS-NAME,RainbowSix.exe,PROXY
+
+  # --- AI / LLM сервисы → 🤖 ИИ (маршрут выбирается вручную в FlClashX) ---
+  - RULE-SET,ai,🤖 ИИ
 
   # --- Игровые платформы и сервисы → 🎮 Игры (по умолчанию DIRECT, можно переключить) ---
   - RULE-SET,epicgames,🎮 Игры
