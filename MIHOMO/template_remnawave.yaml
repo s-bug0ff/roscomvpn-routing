@@ -162,6 +162,15 @@ proxy-groups:
     proxies:
       - 🔓 Без VPN
       - 🛡️ VPN
+  - name: 🦸 Marvel Rivals
+    icon: https://upload.wikimedia.org/wikipedia/commons/7/70/Logo_Marvel_Rivals.png
+    type: select
+    remnawave:
+      include-proxies: false
+    include-all: true
+    proxies:
+      - 🔓 Без VPN
+      - 🛡️ VPN
   - name: 🤖 ИИ
     icon: https://cdn.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bot.png
     type: select
@@ -446,6 +455,12 @@ rules:
   - RULE-SET,youtube,📺 Youtube
   - RULE-SET,telegram,PROXY
   - RULE-SET,github,PROXY
+  - DOMAIN-SUFFIX,deadorbit.net,PROXY
+
+    # --- Marvel Rivals → 🦸 Marvel Rivals (можно переключить DIRECT/VPN) ---
+  - PROCESS-NAME,Marvel-Win64-Shipping.exe,🦸 Marvel Rivals
+  - PROCESS-NAME,MarvelRivals_launcher.exe,🦸 Marvel Rivals
+  - PROCESS-NAME,Marvel.exe,🦸 Marvel Rivals
 
   # --- Ubisoft ---
   - PROCESS-NAME,upc.exe,PROXY
