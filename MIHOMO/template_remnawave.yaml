@@ -73,6 +73,17 @@ tun:
     - ff00::/8
     - fe80::/10
     - ::/127
+    - 224.0.0.0/4
+    - 255.255.255.255/32
+    - 195.208.30.0/24
+    - 195.208.31.0/24
+    - 84.16.229.0/24
+    - 84.16.252.0/24
+    - 91.109.20.0/24
+    - 46.165.193.0/24
+    - 93.177.124.0/24
+    - 178.162.237.0/24
+    - 37.58.56.0/24
 dns:
   enable: true
   ipv6: false
@@ -80,6 +91,10 @@ dns:
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - rule-set:private-domains # исключить из fake-ip приватные домены
+    - +.d-net.pro
+    - +.id-network.ru
+    - +.sonicpro.ru
+    - +.fonmix.ru
   default-nameserver:
     - https://77.88.8.8/dns-query
     - https://8.8.8.8/dns-query
@@ -122,6 +137,17 @@ sniffer:
     - ff00::/8
     - fe80::/10
     - ::/127
+    - 224.0.0.0/4
+    - 255.255.255.255/32
+    - 195.208.30.0/24
+    - 195.208.31.0/24
+    - 84.16.229.0/24
+    - 84.16.252.0/24
+    - 91.109.20.0/24
+    - 46.165.193.0/24
+    - 93.177.124.0/24
+    - 178.162.237.0/24
+    - 37.58.56.0/24
 find-process-mode: strict
 profile:
   store-selected: true
@@ -488,6 +514,10 @@ rules:
   - RULE-SET,pinterest,DIRECT
 
   # --- DIRECT ---
+  - DOMAIN-SUFFIX,d-net.pro,DIRECT
+  - DOMAIN-SUFFIX,id-network.ru,DIRECT
+  - DOMAIN-SUFFIX,sonicpro.ru,DIRECT
+  - DOMAIN-SUFFIX,fonmix.ru,DIRECT
   - RULE-SET,category-ru,DIRECT                    # RU-сайты, жесткая зависимость от whitelist
   - RULE-SET,whitelist,DIRECT                      # RU-белосписочный
 
@@ -503,6 +533,17 @@ rules:
   - RULE-SET,ru-apps,DIRECT                        # RU-приложения Android
 
   # --- IP-адреса → DIRECT ---
+  - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
+  - IP-CIDR,255.255.255.255/32,DIRECT,no-resolve
+  - IP-CIDR,195.208.30.0/24,DIRECT,no-resolve
+  - IP-CIDR,195.208.31.0/24,DIRECT,no-resolve
+  - IP-CIDR,84.16.229.0/24,DIRECT,no-resolve
+  - IP-CIDR,84.16.252.0/24,DIRECT,no-resolve
+  - IP-CIDR,91.109.20.0/24,DIRECT,no-resolve
+  - IP-CIDR,46.165.193.0/24,DIRECT,no-resolve
+  - IP-CIDR,93.177.124.0/24,DIRECT,no-resolve
+  - IP-CIDR,178.162.237.0/24,DIRECT,no-resolve
+  - IP-CIDR,37.58.56.0/24,DIRECT,no-resolve
   - RULE-SET,direct-ips,DIRECT
 
   # --- Всё остальное → PROXY ---
