@@ -41,7 +41,7 @@
 # USDT TRC20 — TMu3N2ZjK5omJ7n3WAj5MNCSM5querBXsR
 # ============================================================
 
-mixed-port: 7890
+# Максимально жесткий режим: только TUN, без локального mixed-port (HTTP/SOCKS) входа.
 mode: rule
 log-level: silent
 allow-lan: false
