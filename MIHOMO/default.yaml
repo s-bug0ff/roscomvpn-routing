@@ -383,6 +383,7 @@ rules:
   - RULE-SET,category-ads,REJECT-DROP
   - RULE-SET,win-spy,REJECT-DROP
   - RULE-SET,torrent-domains,DIRECT
+  - RULE-SET,google-play,PROXY
   - RULE-SET,twitch-ads,PROXY
   - RULE-SET,youtube,📺 Youtube
   - RULE-SET,telegram,PROXY
@@ -396,7 +397,6 @@ rules:
   - RULE-SET,twitch,DIRECT
   - RULE-SET,microsoft,DIRECT
   - RULE-SET,apple,DIRECT
-  - RULE-SET,google-play,DIRECT
   - RULE-SET,pinterest,DIRECT
   - RULE-SET,category-ru,DIRECT
   - RULE-SET,whitelist,DIRECT

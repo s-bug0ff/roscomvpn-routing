@@ -110,7 +110,7 @@
 <tbody>
 <tr><td>✅ <b>Русские/белорусские</b> домены и CIDR</td><td>За исключением РКН-списков + РФ активов зарубежных CDN-сервисов</td></tr>
 <tr><td>✅ <b>"Казенные" сервисы РФ и CDN</b></td><td>VK, OK, Mail.Ru, Яндекс, CDNVideo (включая зарубежные активы)</td></tr>
-<tr><td>✅ <b>Обновления и пуши</b></td><td>Apple, Microsoft, Android/Google Play — корректная работа устройства + экономия трафика</td></tr>
+<tr><td>✅ <b>Обновления и пуши</b></td><td>Apple, Microsoft — корректная работа устройства + экономия трафика</td></tr>
 <tr><td>✅ <b>Все банки РФ</b></td><td>Вытащены с сайта ЦБ РФ + собрано саморезолвингом, включая зарубежные домены</td></tr>
 <tr><td>✅ <b>Игровые платформы</b></td><td>Steam, Epic Games, Riot Games, Escape from Tarkov — экономия трафика + проблемы через прокси</td></tr>
 <tr><td>✅ <b>Faceit</b></td><td>Фикс для РФ игроков, увеличиваем количество доступных локаций серверов</td></tr>
@@ -124,6 +124,7 @@
 <table width="100%">
 <thead><tr><th align="left">Что</th><th align="left">Зачем</th></tr></thead>
 <tbody>
+<tr><td>🌐 <b>Google Play/Android</b></td><td>Борьба с ТСПУ и банами РКН</td></tr>
 <tr><td>🌐 <b>YouTube</b></td><td>Борьба с ТСПУ и банами РКН</td></tr>
 <tr><td>🌐 <b>Telegram</b></td><td>Борьба с ТСПУ и банами РКН</td></tr>
 <tr><td>🌐 <b>GitHub</b></td><td>Борьба с ТСПУ и банами РКН</td></tr>
