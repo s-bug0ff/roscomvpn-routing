@@ -30,9 +30,16 @@
 <table width="100%">
 <thead><tr><th align="left">Способ</th><th align="left">Ссылка</th><th align="left">Описание</th></tr></thead>
 <tbody>
-<tr><td>⚡ Быстрая установка</td><td><a href="https://routing.help">routing.help</a></td><td>Редирект на диплинк, открыть на устройстве</td></tr>
+<tr><td>⚡ Быстрая установка</td><td><a href="https://routing.help">routing.help</a></td><td>Редирект на DEFAULT-диплинк, открыть на устройстве</td></tr>
+<tr><td colspan="3"><b>DEFAULT</b> — полный профиль: RU/BY direct, YouTube/Telegram/GitHub через прокси, реклама блокируется</td></tr>
 <tr><td>🔗 DEFAULT.DEEPLINK</td><td><a href="https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/refs/heads/main/HAPP/DEFAULT.DEEPLINK">Просмотр</a></td><td>Диплинк-ссылка в текстовом формате</td></tr>
 <tr><td>📊 DEFAULT.JSON</td><td><a href="https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/refs/heads/main/HAPP/DEFAULT.JSON">Просмотр</a></td><td>JSON-конфиг роутинга</td></tr>
+<tr><td colspan="3"><b>WHITELIST</b> — direct только для сервисов и IP из белых списков РФ; всё остальное через прокси</td></tr>
+<tr><td>🔗 WHITELIST.DEEPLINK</td><td><a href="https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/refs/heads/main/HAPP/WHITELIST.DEEPLINK">Просмотр</a></td><td>Диплинк-ссылка в текстовом формате</td></tr>
+<tr><td>📊 WHITELIST.JSON</td><td><a href="https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/refs/heads/main/HAPP/WHITELIST.JSON">Просмотр</a></td><td>JSON-конфиг роутинга</td></tr>
+<tr><td colspan="3"><b>JSONSUB</b> — минимальный профиль: только DNS + кастомные geoip/geosite, без встроенных правил</td></tr>
+<tr><td>🔗 JSONSUB.DEEPLINK</td><td><a href="https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/refs/heads/main/HAPP/JSONSUB.DEEPLINK">Просмотр</a></td><td>Диплинк-ссылка в текстовом формате</td></tr>
+<tr><td>📊 JSONSUB.JSON</td><td><a href="https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/refs/heads/main/HAPP/JSONSUB.JSON">Просмотр</a></td><td>JSON-конфиг роутинга</td></tr>
 </tbody>
 </table>
 
@@ -41,9 +48,16 @@
 <table width="100%">
 <thead><tr><th align="left">Способ</th><th align="left">Ссылка</th><th align="left">Описание</th></tr></thead>
 <tbody>
-<tr><td>⚡ Быстрая установка</td><td><a href="https://incy.routing.help">incy.routing.help</a></td><td>Редирект на диплинк, открыть на устройстве</td></tr>
+<tr><td>⚡ Быстрая установка</td><td><a href="https://incy.routing.help">incy.routing.help</a></td><td>Редирект на DEFAULT-диплинк, открыть на устройстве</td></tr>
+<tr><td colspan="3"><b>DEFAULT</b> — полный профиль: RU/BY direct, YouTube/Telegram/GitHub через прокси, реклама блокируется</td></tr>
 <tr><td>🔗 DEFAULT.DEEPLINK</td><td><a href="https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/refs/heads/main/INCY/DEFAULT.DEEPLINK">Просмотр</a></td><td>Диплинк-ссылка в текстовом формате</td></tr>
 <tr><td>📊 DEFAULT.JSON</td><td><a href="https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/refs/heads/main/INCY/DEFAULT.JSON">Просмотр</a></td><td>JSON-конфиг роутинга</td></tr>
+<tr><td colspan="3"><b>WHITELIST</b> — direct только для сервисов и IP из белых списков РФ; всё остальное через прокси</td></tr>
+<tr><td>🔗 WHITELIST.DEEPLINK</td><td><a href="https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/refs/heads/main/INCY/WHITELIST.DEEPLINK">Просмотр</a></td><td>Диплинк-ссылка в текстовом формате</td></tr>
+<tr><td>📊 WHITELIST.JSON</td><td><a href="https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/refs/heads/main/INCY/WHITELIST.JSON">Просмотр</a></td><td>JSON-конфиг роутинга</td></tr>
+<tr><td colspan="3"><b>JSONSUB</b> — минимальный профиль: только DNS + кастомные geoip/geosite, без встроенных правил</td></tr>
+<tr><td>🔗 JSONSUB.DEEPLINK</td><td><a href="https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/refs/heads/main/INCY/JSONSUB.DEEPLINK">Просмотр</a></td><td>Диплинк-ссылка в текстовом формате</td></tr>
+<tr><td>📊 JSONSUB.JSON</td><td><a href="https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/refs/heads/main/INCY/JSONSUB.JSON">Просмотр</a></td><td>JSON-конфиг роутинга</td></tr>
 </tbody>
 </table>
 
@@ -154,14 +168,12 @@
 > Модули `subscription.py` монтируются в контейнер панели и автоматически подставляют актуальные geoip.dat/geosite.dat в подписки пользователей.
 
 <table width="100%">
-<thead><tr><th align="left">Панель</th><th align="left">Формат</th><th align="left">Описание</th></tr></thead>
+<thead><tr><th align="left">Панель</th><th align="left">Описание</th></tr></thead>
 <tbody>
-<tr><td><a href="ADDON_AUTOROUTING/3x-ui/">3x-ui</a></td><td>Non-JSON</td><td>Кастомный форк с поддержкой роутинга</td></tr>
-<tr><td><a href="ADDON_AUTOROUTING/Marzban%20JSON/">Marzban</a></td><td>JSON</td><td><code>subscription.py</code> для JSON-подписок</td></tr>
-<tr><td><a href="ADDON_AUTOROUTING/Marzban%20NON-JSON/">Marzban</a></td><td>Non-JSON</td><td><code>subscription.py</code> для стандартных подписок</td></tr>
-<tr><td><a href="ADDON_AUTOROUTING/Marzneshin%20JSON/">Marzneshin</a></td><td>JSON</td><td><code>subscription.py</code> для JSON-подписок</td></tr>
-<tr><td><a href="ADDON_AUTOROUTING/Marzneshin%20NON-JSON/">Marzneshin</a></td><td>Non-JSON</td><td><code>subscription.py</code> для стандартных подписок</td></tr>
-<tr><td><a href="ADDON_AUTOROUTING/Remnawave/">Remnawave</a></td><td>API</td><td>Контейнер для автообновления роутинга через API</td></tr>
+<tr><td><a href="https://github.com/hydraponique/3x-ui">🚀 3x-ui</a></td><td>Кастомный форк с встроенным RoscomVPN-роутингом, UI-выбором профиля и автообновлением geo-файлов</td></tr>
+<tr><td><a href="ADDON_AUTOROUTING/Marzban/">Marzban</a></td><td><code>subscription.py</code> — один файл для JSON и Non-JSON подписок, тип роутинга через env var</td></tr>
+<tr><td><a href="ADDON_AUTOROUTING/Marzneshin/">Marzneshin</a></td><td><code>subscription.py</code> — один файл для JSON и Non-JSON подписок, тип роутинга через env var</td></tr>
+<tr><td><a href="ADDON_AUTOROUTING/Remnawave/">Remnawave</a></td><td>Контейнер для автообновления роутинга через API</td></tr>
 </tbody>
 </table>
 

@@ -1,7 +1,64 @@
+import os
 import re
 import requests
+import threading
+import time as _time
 
 from distutils.version import LooseVersion
+
+
+# ─── RoscomVPN Routing Resolver ─────────────────────────────────────────────────
+# Fetches .DEEPLINK content from GitHub with 10-min TTL cache, 30s negative
+# cache on failure, and thread-safe locking. No blocking HEAD on every request.
+#
+# Override via env vars:
+#   ROSCOMVPN_ROUTING_SOURCE  = default | jsonsub | whitelist | custom
+#   ROSCOMVPN_ROUTING_CUSTOM  = <your happ:// URL>
+# ─────────────────────────────────────────────────────────────────────────────────
+
+_ROSCOMVPN_URLS = {
+    "default": "https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/main/HAPP/DEFAULT.DEEPLINK",
+    "jsonsub": "https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/main/HAPP/JSONSUB.DEEPLINK",
+    "whitelist": "https://raw.githubusercontent.com/hydraponique/roscomvpn-routing/main/HAPP/WHITELIST.DEEPLINK",
+}
+
+
+class _RoscomVPNResolver:
+    def __init__(self, default_source: str):
+        self._lock = threading.Lock()
+        self._value = ""
+        self._fetched_at = 0.0
+        self._last_fail = 0.0
+        self._source = os.environ.get("ROSCOMVPN_ROUTING_SOURCE", default_source).strip().lower()
+        self._custom = os.environ.get("ROSCOMVPN_ROUTING_CUSTOM", "").strip()
+
+    def get(self) -> str:
+        if self._source == "custom":
+            return self._custom
+        url = _ROSCOMVPN_URLS.get(self._source)
+        if not url:
+            return self._custom
+        now = _time.monotonic()
+        if self._value and (now - self._fetched_at) < 600:
+            return self._value
+        if self._last_fail and (now - self._last_fail) < 30:
+            return self._value
+        with self._lock:
+            now = _time.monotonic()
+            if self._value and (now - self._fetched_at) < 600:
+                return self._value
+            try:
+                r = requests.get(url, timeout=4)
+                r.raise_for_status()
+                self._value = r.text.strip()
+                self._fetched_at = now
+                self._last_fail = 0.0
+            except Exception:
+                self._last_fail = now
+        return self._value
+
+
+roscomvpn_resolver = _RoscomVPNResolver("default")
 from fastapi import APIRouter, Depends, Header, Path, Request, Response
 from fastapi.responses import HTMLResponse
 
@@ -79,15 +136,11 @@ def user_subscription(
         )
     }
 
-    # Пытаемся получить routing URL, но игнорируем любые ошибки
-    try:
-        routingstatic = requests.head("https://routing.help/json", timeout=1)
-        if 'Location' in routingstatic.headers:
-            routingurl = routingstatic.headers['Location']
-            response_headers["routing"] = routingurl
-    except Exception:
-        # Если возникает любая ошибка, просто не добавляем заголовок routing
-        pass
+    # RoscomVPN: cached routing deeplink (no blocking HEAD per request)
+    _routing = roscomvpn_resolver.get()
+    if _routing:
+        response_headers["routing"] = _routing
+        response_headers["routing-enable"] = "true"
 
     if re.match(r'^([Cc]lash-verge|[Cc]lash[-\.]?[Mm]eta|[Ff][Ll][Cc]lash|[Mm]ihomo)', user_agent):
         conf = generate_subscription(user=user, config_format="clash-meta", as_base64=False, reverse=False)
@@ -194,15 +247,11 @@ def user_subscription_with_client_type(
         )
     }
 
-    # Пытаемся получить routing URL, но игнорируем любые ошибки
-    try:
-        routingstatic = requests.head("https://routing.help/json", timeout=1)
-        if 'Location' in routingstatic.headers:
-            routingurl = routingstatic.headers['Location']
-            response_headers["routing"] = routingurl
-    except Exception:
-        # Если возникает любая ошибка, просто не добавляем заголовок routing
-        pass
+    # RoscomVPN: cached routing deeplink (no blocking HEAD per request)
+    _routing = roscomvpn_resolver.get()
+    if _routing:
+        response_headers["routing"] = _routing
+        response_headers["routing-enable"] = "true"
 
     config = client_config.get(client_type)
     conf = generate_subscription(user=user,

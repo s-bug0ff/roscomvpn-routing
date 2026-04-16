@@ -10,9 +10,9 @@
   "DomesticDNSType": "DoH",
   "DomesticDNSDomain": "https://77.88.8.8/dns-query",
   "DomesticDNSIP": "77.88.8.8",
-  "Geoipurl": "https://cdn.jsdelivr.net/gh/hydraponique/roscomvpn-geoip@202604150531/release/geoip.dat",
-  "Geositeurl": "https://cdn.jsdelivr.net/gh/hydraponique/roscomvpn-geosite@202604130712/release/geosite.dat",
-  "LastUpdated": "1776231118",
+  "Geoipurl": "https://cdn.jsdelivr.net/gh/hydraponique/roscomvpn-geoip@202604160537/release/geoip.dat",
+  "Geositeurl": "https://cdn.jsdelivr.net/gh/hydraponique/roscomvpn-geosite@202604152235/release/geosite.dat",
+  "LastUpdated": "1776317890",
   "DnsHosts": {
     "lkfl2.nalog.ru": "213.24.64.175",
     "lknpd.nalog.ru": "213.24.64.181"
@@ -28,7 +28,6 @@
     "geosite:riot",
     "geosite:escapefromtarkov",
     "geosite:steam",
-    "geosite:origin",
     "geosite:twitch",
     "geosite:pinterest",
     "geosite:faceit"
