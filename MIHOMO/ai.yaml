@@ -7,11 +7,19 @@ payload:
   # Anthropic / Claude
   - DOMAIN-SUFFIX,anthropic.com
   - DOMAIN-SUFFIX,claude.ai
-  # Google Gemini / AI Studio / Vertex (часть запросов с Android — только по домену, без совпадения PROCESS-NAME)
+  # Google Gemini / AI Studio / Vertex / Labs (Android часто бьёт в *.googleapis.com и pa.googleapis.com, не только в generativelanguage)
   - DOMAIN-SUFFIX,gemini.google.com
+  - DOMAIN-SUFFIX,bard.google.com
+  - DOMAIN-SUFFIX,ai.google.com
   - DOMAIN-SUFFIX,aistudio.google.com
+  - DOMAIN-SUFFIX,notebooklm.google.com
+  - DOMAIN-SUFFIX,labs.google.com
   - DOMAIN-SUFFIX,generativelanguage.googleapis.com
   - DOMAIN-SUFFIX,aiplatform.googleapis.com
+  - DOMAIN-SUFFIX,cloudcode-pa.googleapis.com
+  - DOMAIN-SUFFIX,embeddedassistant.googleapis.com
+  - DOMAIN-SUFFIX,texttospeech.googleapis.com
+  - DOMAIN-SUFFIX,speech.googleapis.com
   - DOMAIN-SUFFIX,ai.google.dev
   - DOMAIN-SUFFIX,makersuite.google.com
   # Другие крупные AI-платформы
