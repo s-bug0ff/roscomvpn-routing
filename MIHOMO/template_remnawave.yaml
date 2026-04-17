@@ -28,7 +28,7 @@
 #   • Twitch, Pinterest                     → DIRECT
 #   • YouTube, Telegram, GitHub             → PROXY
 #   • Игровые сервисы                       → 🎮 Игры
-#   • AI-сервисы                            → 🤖 ИИ (локальный список в этом файле)
+#   • AI-сервисы                            → 🤖 ИИ (локальный ai.yaml; в rules — выше google-play, иначе Google API уходит в PROXY)
 #   • Остальное                             → PROXY
 #
 # UDP-порт 443/853 (QUIC/DoQ) блокируется глобально.
@@ -476,6 +476,9 @@ rules:
   # --- Торренты ---
   - RULE-SET,torrent-domains,DIRECT                # торрент-трекеры — напрямую
 
+  # --- AI / LLM → 🤖 ИИ (раньше google-play/youtube: иначе *.googleapis.com и др. из geosite попадают в PROXY, не сюда) ---
+  - RULE-SET,ai,🤖 ИИ
+
   # --- Сервисы через PROXY ---
   - RULE-SET,google-play,PROXY
   - RULE-SET,twitch-ads,PROXY                      # домены Twitch Ads — через PROXY (фикс качества)
@@ -495,9 +498,6 @@ rules:
  
   # Rainbow Six Siege
   - PROCESS-NAME,RainbowSix.exe,PROXY
-
-  # --- AI / LLM сервисы → 🤖 ИИ (маршрут выбирается вручную в FlClashX) ---
-  - RULE-SET,ai,🤖 ИИ
 
   # --- Игровые платформы и сервисы → 🎮 Игры (по умолчанию DIRECT, можно переключить) ---
   - RULE-SET,epicgames,🎮 Игры
