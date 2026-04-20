@@ -23,7 +23,6 @@ payload:
   - DOMAIN-SUFFIX,ai.google.dev
   - DOMAIN-SUFFIX,makersuite.google.com
   # Дополнительные домены из Android-логов
-  # android.chat.openai.com уже покрыт правилом DOMAIN-SUFFIX,openai.com
   - DOMAIN-SUFFIX,robinfrontend-pa.googleapis.com
   - DOMAIN-SUFFIX,agnss.goog
   - DOMAIN-SUFFIX,content-autofill.googleapis.com
