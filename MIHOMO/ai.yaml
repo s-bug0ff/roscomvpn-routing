@@ -22,6 +22,14 @@ payload:
   - DOMAIN-SUFFIX,speech.googleapis.com
   - DOMAIN-SUFFIX,ai.google.dev
   - DOMAIN-SUFFIX,makersuite.google.com
+  # Дополнительные домены из Android-логов
+  # android.chat.openai.com уже покрыт правилом DOMAIN-SUFFIX,openai.com
+  - DOMAIN-SUFFIX,robinfrontend-pa.googleapis.com
+  - DOMAIN-SUFFIX,agnss.goog
+  - DOMAIN-SUFFIX,content-autofill.googleapis.com
+  - DOMAIN-SUFFIX,dns.google.com
+  - DOMAIN-SUFFIX,mtalk.google.com
+  - DOMAIN-SUFFIX,subscriptionsfirstparty-pa.googleapis.com
   # Другие крупные AI-платформы
   - DOMAIN-SUFFIX,perplexity.ai
   - DOMAIN-SUFFIX,poe.com
