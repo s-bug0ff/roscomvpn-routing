@@ -441,7 +441,7 @@ rule-providers:
     type: http
     behavior: classical
     format: yaml
-    url: https://raw.githubusercontent.com/roscomvpn/custom-category/release/mihomo/games.yaml
+    url: https://raw.githubusercontent.com/s-bug0ff/roscomvpn-routing/refs/heads/main/MIHOMO/games.yaml
     path: ./ruleset/games.yaml
     proxy: ⚡️ Авто
     interval: 86400
@@ -475,6 +475,18 @@ rules:
 
   # --- Торренты ---
   - RULE-SET,torrent-domains,DIRECT                # торрент-трекеры — напрямую
+  # P2P/торрент-подобные апдейтеры игровых лаунчеров — напрямую
+  - PROCESS-NAME,Steam.exe,DIRECT
+  - PROCESS-NAME,steamwebhelper.exe,DIRECT
+  - PROCESS-NAME,EpicGamesLauncher.exe,DIRECT
+  - PROCESS-NAME,Origin.exe,DIRECT
+  - PROCESS-NAME,EADesktop.exe,DIRECT
+  - PROCESS-NAME,RiotClientServices.exe,DIRECT
+  - PROCESS-NAME,RiotClientUx.exe,DIRECT
+  - PROCESS-NAME,upc.exe,DIRECT
+  - PROCESS-NAME,UbisoftConnect.exe,DIRECT
+  - DOMAIN-SUFFIX,my.games,DIRECT
+  - DOMAIN-SUFFIX,vkplay.ru,DIRECT
 
   # --- AI / LLM → 🤖 ИИ (раньше google-play/youtube: иначе *.googleapis.com и др. из geosite попадают в PROXY, не сюда) ---
   - RULE-SET,ai,🤖 ИИ
@@ -485,16 +497,29 @@ rules:
   - RULE-SET,youtube,📺 Youtube
   - RULE-SET,telegram,PROXY
   - RULE-SET,github,PROXY
-  - DOMAIN-SUFFIX,deadorbit.net,PROXY
+  # --- Игровые обходы входа/авторизации (точечные домены) ---
+  # Destiny 2 / Bungie
+  - DOMAIN-SUFFIX,bungie.net,PROXY                  # API/веб-авторизация Bungie и связанные сервисы Destiny 2
+  - DOMAIN-SUFFIX,deadorbit.net,PROXY               # Destiny 2 signon/stun-инфраструктура
+  - DOMAIN-SUFFIX,easebar.com,PROXY                 # инфраструктурный домен, встречается в цепочке логина/сетевых проверок
+  - DOMAIN-SUFFIX,gravityshavings.net,PROXY         # Destiny 2 signon/stun-инфраструктура
+  # Battle.net / Blizzard
+  - DOMAIN-SUFFIX,battle.net,PROXY                  # основной домен входа Battle.net
+  - DOMAIN-SUFFIX,battlenet.com,PROXY               # смежные сервисы авторизации/аккаунта Battle.net
+  - DOMAIN-SUFFIX,blizzard.com,PROXY                # сервисы Blizzard (в т.ч. account/connectivity)
+  - DOMAIN-SUFFIX,blzddist1-a.akamaihd.net,PROXY    # CDN Battle.net launcher, критичен для логина/обновлений
+  # Ubisoft Connect / Uplay
+  - DOMAIN-SUFFIX,ubisoft.com,PROXY                 # основной домен аккаунта/поддержки Ubisoft
+  - DOMAIN-SUFFIX,ubi.com,PROXY                     # базовый домен сервисов Ubisoft
+  - DOMAIN-SUFFIX,uplay.com,PROXY                   # исторический Uplay-домен (часто используется клиентом)
+  - DOMAIN-SUFFIX,ubisoftconnect.com,PROXY          # веб-сервисы Ubisoft Connect
+  - DOMAIN-SUFFIX,uplaypc-s-ubisoft.cdn.ubi.com,PROXY      # CDN загрузки/патчей Ubisoft Connect
+  - DOMAIN-SUFFIX,uplaypc-s-ubisoft-ww.cdn.ubi.com,PROXY   # глобальный CDN загрузки/патчей Ubisoft Connect
+  - DOMAIN-SUFFIX,ubisoftconnect.cdn.ubi.com,PROXY         # CDN/статические ресурсы Ubisoft Connect
 
-    # --- Marvel Rivals → 🦸 Marvel Rivals (можно переключить DIRECT/VPN) ---
-  - PROCESS-NAME,Marvel-Win64-Shipping.exe,🦸 Marvel Rivals
-  - PROCESS-NAME,MarvelRivals_launcher.exe,🦸 Marvel Rivals
-  - PROCESS-NAME,Marvel.exe,🦸 Marvel Rivals
+
 
   # --- Ubisoft ---
-  - PROCESS-NAME,upc.exe,PROXY
-  - PROCESS-NAME,UbisoftConnect.exe,PROXY
  
   # Rainbow Six Siege
   - PROCESS-NAME,RainbowSix.exe,PROXY
