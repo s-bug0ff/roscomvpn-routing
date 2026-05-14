@@ -485,6 +485,9 @@ rules:
   - PROCESS-NAME,RiotClientUx.exe,DIRECT
   - PROCESS-NAME,upc.exe,DIRECT
   - PROCESS-NAME,UbisoftConnect.exe,DIRECT
+  - PROCESS-NAME,GameCenter.exe,DIRECT
+  - PROCESS-NAME,VK Play.exe,DIRECT
+  - PROCESS-NAME,MyGamesLauncher.exe,DIRECT
   - DOMAIN-SUFFIX,my.games,DIRECT
   - DOMAIN-SUFFIX,vkplay.ru,DIRECT
 
